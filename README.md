@@ -110,6 +110,11 @@ group :development, :test do
 end
 ```
 
+```sh
+$ rails generate rspec:install
+$ rspec # should run without errors
+```
+
 ### Running Application
 
 ##### Making sure webpacker is working properly

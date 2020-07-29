@@ -1,0 +1,18 @@
+.page-header
+  = link_to review_themes_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_review_theme_path(@review_theme), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show review_theme
+
+%dl.dl-horizontal
+  %dt Review:
+  %dd= @review_theme.review
+  %dt Theme:
+  %dd= @review_theme.theme
+  %dt Category:
+  %dd= @review_theme.category
+  %dt Sentiment:
+  %dd= @review_theme.sentiment

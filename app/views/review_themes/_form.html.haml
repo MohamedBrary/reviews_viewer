@@ -1,0 +1,31 @@
+= form_for @review_theme, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @review_theme.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@review_theme.errors.count, "error")} prohibited this review_theme from being saved:"
+
+      %ul
+        - @review_theme.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :review, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :review, class: 'form-control'
+  .form-group
+    = f.label :theme, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :theme, class: 'form-control'
+  .form-group
+    = f.label :category, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :category, class: 'form-control'
+  .form-group
+    = f.label :sentiment, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :sentiment, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

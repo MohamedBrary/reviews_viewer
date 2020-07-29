@@ -40,6 +40,11 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-byebug'
 
+  # Using Rspec testing framework
+  gem 'rspec-rails'
+  gem 'rspec_api_documentation'
+  gem 'database_cleaner-active_record'
+
   # Handling env variables
   gem 'dotenv-rails'
 end

@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_theme_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Theme
+  %h1 Listing themes
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Category
+        %th Reviews Count
+        %th
+        %th
+        %th
+
+    %tbody
+      - @themes.each do |theme|
+        %tr
+          %td= theme.id
+          %td= theme.name
+          %td= link_to theme.category, theme.category
+          %td= theme.reviews.count
+          %td= link_to 'Show', theme
+          %td= link_to 'Edit', edit_theme_path(theme)
+          %td= link_to 'Destroy', theme, data: { confirm: 'Are you sure?' }, method: :delete

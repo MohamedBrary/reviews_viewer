@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_review_theme_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Review theme
+  %h1 Listing review_themes
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Review
+        %th Theme
+        %th Category
+        %th Sentiment
+        %th
+        %th
+        %th
+
+    %tbody
+      - @review_themes.each do |review_theme|
+        %tr
+          %td= review_theme.review
+          %td= review_theme.theme
+          %td= review_theme.category
+          %td= review_theme.sentiment
+          %td= link_to 'Show', review_theme
+          %td= link_to 'Edit', edit_review_theme_path(review_theme)
+          %td= link_to 'Destroy', review_theme, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,0 +1,32 @@
+.page-header
+  = link_to new_review_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Review
+  %h1 Listing reviews
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th ID
+        %th Comment
+        %th Posted at
+        %th Themes
+        %th Categories
+        %th
+        %th
+        %th
+
+    %tbody
+      - @reviews.each do |review|
+        %tr
+          %td= review.id
+          %td= review.comment
+          %td= review.posted_at
+          %td= theme_links(review.theme_ids).html_safe
+          %td= category_links(review.category_ids).html_safe
+          %td= link_to 'Show', review
+          %td= link_to 'Edit', edit_review_path(review)
+          %td= link_to 'Destroy', review, data: { confirm: 'Are you sure?' }, method: :delete
+
+= will_paginate @reviews, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
