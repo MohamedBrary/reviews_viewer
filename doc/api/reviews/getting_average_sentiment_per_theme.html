@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>API Documentation</title>
-  <meta charset="utf-8">
-  <style>
-    
+  <head>
+    <title>Reviews API</title>
+    <meta charset="utf-8">
+    <style>
+      
 body {
   font-family: Helvetica,Arial,sans-serif;
   font-size: 13px;
@@ -39,7 +39,7 @@ pre {
 
 td.required .name:after {
   float: right;
-  content: &quot;required&quot;;
+  content: "required";
   font-weight: normal;
   color: #F08080;
 }
@@ -102,41 +102,51 @@ table th, table td {
   text-align: left;
 }
 
-  </style>
-</head>
-<body>
-<div class="container">
-  <h1>API Documentation</h1>
-  
-  <div class="article">
-    <h2>Reviews</h2>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reviews API</h1>
 
-      <p class="explanation">Reviews resource</p>
+        <p class="explanation">Reviews resource</p>
 
-    <ul>
-      <li>
-        <a href="reviews/create_a_review_with_valid_params.html">Create a review with valid params</a>
-      </li>
-      <li>
-        <a href="reviews/filtering_reviews_by_category_ids.html">Filtering reviews by category_ids</a>
-      </li>
-      <li>
-        <a href="reviews/filtering_reviews_by_comment.html">Filtering reviews by comment</a>
-      </li>
-      <li>
-        <a href="reviews/filtering_reviews_by_theme_ids.html">Filtering reviews by theme_ids</a>
-      </li>
-      <li>
-        <a href="reviews/getting_a_list_of_reviews.html">Getting a list of reviews</a>
-      </li>
-      <li>
-        <a href="reviews/getting_average_sentiment_per_category.html">Getting average sentiment per category</a>
-      </li>
-      <li>
-        <a href="reviews/getting_average_sentiment_per_theme.html">Getting average sentiment per theme</a>
-      </li>
-    </ul>
-  </div>
-</div>
-</body>
+      <div class="article">
+        <h2>Getting average sentiment per theme</h2>
+        <h3>GET /reviews/themes_sentiment_average.json</h3>
+
+
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Host: example.org
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">GET /reviews/themes_sentiment_average.json</pre>
+
+
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: application/json; charset=utf-8
+ETag: W/&quot;c49cdb73a9f7323b0ad72e480362cd80&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 667901da-ad12-49f9-86b0-106ada883015
+X-Runtime: 0.005100
+Content-Length: 209</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">[binary data]</pre>
+      </div>
+    </div>
+  </body>
 </html>

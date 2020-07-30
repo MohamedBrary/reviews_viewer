@@ -13,5 +13,9 @@ FactoryBot.define do
     theme { FactoriesHelper.sample_record_or_generate(Theme) }
     category { theme.category }
     review { FactoriesHelper.sample_record_or_generate(Review) }
+
+    after(:create) do |review_theme|
+      review_theme.review.set_category_and_theme_ids
+    end
   end
 end

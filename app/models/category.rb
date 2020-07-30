@@ -11,4 +11,8 @@ class Category < ApplicationRecord
   def to_s
     name
   end
+
+  def self.names
+    @names ||= pluck(:id, :name).to_h
+  end
 end

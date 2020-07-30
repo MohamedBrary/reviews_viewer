@@ -4,7 +4,20 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.paginate(page: params[:page])
+    @reviews = Review.filter(params)
+      .paginate(page: params[:page])
+  end
+
+  # GET /reviews/categories
+  # GET /reviews/categories.json
+  def categories_sentiment_average
+    @averages = Review.avg_sentiment_by_category_ids
+  end
+
+  # GET /themes
+  # GET /themes.json
+  def themes_sentiment_average
+    @averages = Review.avg_sentiment_by_theme_ids
   end
 
   # GET /reviews/1
@@ -71,5 +84,9 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:id, :comment, :posted_at, :theme_ids, :category_ids,
         review_themes_attributes: [ :id, :theme_id, :sentiment ])
+    end
+
+    def reviews_index_params
+      params.permit(:comment, :theme_ids, :category_ids, :page, :per_page)
     end
 end

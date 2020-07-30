@@ -7,4 +7,8 @@ class Theme < ApplicationRecord
   def reviews
     @reviews ||= Review.where('theme_ids @> ?', "{#{id}}")
   end
+
+  def self.names
+    @names ||= pluck(:id, :name).to_h
+  end
 end

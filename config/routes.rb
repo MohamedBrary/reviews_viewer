@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+
+  resources :reviews do
+    collection do
+      get :categories_sentiment_average
+      get :themes_sentiment_average
+    end
+  end
+
   resources :review_themes
-  resources :reviews
   resources :themes
   resources :categories
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end

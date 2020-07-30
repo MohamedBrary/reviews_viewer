@@ -12,4 +12,14 @@ class ReviewTheme < ApplicationRecord
   def set_category
     self.category = self.theme.category
   end
+
+  def senitment_as_percentage
+    # logic: -1 => 0%, and 1 => 100%
+    ((senitment+1)*50)
+  end
+
+  def self.senitment_as_percentage(senitment)
+    # logic: -1 => 0%, and 1 => 100%
+    ((senitment+1)*50)
+  end
 end
