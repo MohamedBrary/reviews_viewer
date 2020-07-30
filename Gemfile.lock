@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 66e6113c29438e70bcc6a031971efe60ae06b71f
+  branch: master
+  specs:
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,6 +96,11 @@ GEM
       railties (>= 3.2)
     erubi (1.9.0)
     erubis (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -131,6 +144,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     pg (1.2.3)
+    populator (1.0.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -275,10 +289,13 @@ DEPENDENCIES
   capybara (>= 2.15)
   database_cleaner-active_record
   dotenv-rails
+  factory_bot_rails
+  faker!
   haml-rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
+  populator
   pry
   pry-byebug
   pry-rails

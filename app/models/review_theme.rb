@@ -1,4 +1,6 @@
 class ReviewTheme < ApplicationRecord
+  SENTIMENTS = [-1, 0, 1].freeze
+
   belongs_to :review
   belongs_to :theme
   belongs_to :category

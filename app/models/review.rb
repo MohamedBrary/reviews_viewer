@@ -5,10 +5,10 @@ class Review < ApplicationRecord
   validates :comment, :posted_at, presence: true
 
   def set_category_and_theme_ids
-    self.category_ids = review_themes.distinct.pluck(:category_id)
-    self.theme_ids = review_themes.distinct.pluck(:theme_id)
-
-    save
+    update_columns(
+      category_ids: review_themes.distinct.pluck(:category_id),
+      theme_ids: review_themes.distinct.pluck(:theme_id)
+    )
   end
 
   def self.set_new_category_and_theme_ids

@@ -113,6 +113,29 @@ end
 ```sh
 $ rails generate rspec:install
 $ rspec # should run without errors
+$ mkdir spec/acceptance # create the spec folder for 'rspec_api_documentation'
+.
+. # create your tests
+.
+$ rake docs:generate # to generate the API documentation from the acceptance tests
+```
+
+##### Data generator gems
+
+For a lot of reasons, having the ability to generate records with random and semi-realistic feel is precious;
+- whether for usage in test suite,
+- creating some records from console easily,
+- used in populators, that would allow you to populate your development or staging environment with data, and also allow you to benchmark your application performance against different sizes of data
+
+I use combination of [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) and [Faker](https://github.com/faker-ruby/faker) to have fixture factories with random info, also [Populator](https://github.com/ryanb/populator) to create masses of records with higher performance.
+
+```ruby
+# Gemfile
+# Using FactoryBot, Faker, and Populator as the suite for data generation
+# Adding them to all environments, as I am planning to expose data generation on heroku
+gem 'factory_bot_rails'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+gem 'populator'
 ```
 
 ### Running Application
@@ -209,3 +232,7 @@ $ heroku run rails console
 ### Commentary
 
 - I wanted to use Rails 6, and had some issues with sprockets verions and webpack usage
+- I am aiming to use Postgres indexes (nice SO thread [here](https://stackoverflow.com/questions/1566717/postgresql-like-query-performance-variations)) to speed up the required querying
+  + My understanding that we value retrieval over creating performance, as I would assume that creating reviews and processing them is a background job, while retrieving data and statistics is a client facing feature, and it is vital to be responsive.
+- If I have time, I am also planning to use ElasticSearch, and create a denormalized index suitable for the queries we need, and then provide some benchmarking for both ways
+- Also if there is enough time, I will create some generators and fakers to be able to generate different sizes of data, and have better benchmarks
