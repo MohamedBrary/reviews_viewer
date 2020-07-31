@@ -1,0 +1,84 @@
+%p.lead This is a Rails 6 MVP for product reviews viewing
+
+%h4 Database Content
+%ul
+  - @database_info.each do |key, value|
+    %li= "#{key.to_s.titleize}: #{value} rows"
+  %li= "Total: #{@database_info.values.sum} rows"
+
+%h4 API Get Endpoints
+%ul
+  %li
+    %a{ href: "/reviews.json?per_page=5&page=4", target: :_blank }
+      Listing Reviews
+    %i
+      %a{ href: "/reviews?per_page=5&page=4", target: :_blank }
+        (check same result on html)
+  %li
+    - query = ReviewTheme.last.category_id
+    %a{ href: "/reviews.json?category_ids[]=#{query}", target: :_blank }
+      Listing Reviews with category_id filtering
+    %i
+      %a{ href: "/reviews?category_ids[]=#{query}", target: :_blank }
+        (check same result on html)
+  %li
+    - query = ReviewTheme.last.theme_id
+    %a{ href: "/reviews.json?theme_ids[]=#{query}", target: :_blank }
+      Listing Reviews with theme_id filtering
+    %i
+      %a{ href: "/reviews?theme_ids[]=#{query}", target: :_blank }
+        (check same result on html)
+  %li
+    - query = Review.last.comment.split.sample
+    %a{ href: "/reviews.json?comment=#{query}", target: :_blank }
+      Listing Reviews with comment filtering
+    %i
+      %a{ href: "/reviews?comment=#{query}", target: :_blank }
+        (check same result on html)
+  %li
+    %a{ href: '/reviews/categories_sentiment_average.json', target: :_blank }
+      Average sentiment per category
+  %li
+    %a{ href: '/reviews/themes_sentiment_average.json', target: :_blank }
+      Average sentiment per theme
+
+%h4 Generate More Reviews
+= form_tag '/reviews/generate', :method => :post, class: 'form-inline' do
+  .form-group.mx-sm-3.mb-2
+    %label.sr-only{:for => "categories_num"} Categories No.
+    %input#categories_num.form-control{:placeholder => "Categories No. (3 by default)", name: 'categories_num'}/
+  .form-group.mx-sm-3.mb-2
+    %label.sr-only{:for => "reviews_num"} Reviews No.
+    %input#reviews_num.form-control{:placeholder => "Reviews No. (1000 by default)", name: 'reviews_num'}/
+  %button.btn.btn-primary.mb-2{:type => "submit"} Generate
+%hr
+
+%h4 Commentary & TODOs
+%ul
+  %li I wanted to use Rails 6, and had some issues with sprockets version and webpack usage
+  %li
+    I am aiming to use Postgres indexes (nice SO thread
+    = succeed ")" do
+      %a{:href => "https://stackoverflow.com/questions/1566717/postgresql-like-query-performance-variations"} here
+  %li My understanding that we value retrieval over creating performance, as I would assume that creating reviews and processing them is a background job, while retrieving data and statistics is a client facing feature, and it is vital to be responsive.
+  %li TODO If I have time, I am also planning to use ElasticSearch, and create a denormalized index suitable for the queries we need, and then provide some benchmarking for both ways
+  %li TODO Also if there is enough time, I will create some generators and fakers to be able to generate different sizes of data, and have better benchmarks
+  %li TODO Formatting the API result need a better look, following any specification, would be much better, like JsonAPI for example
+  %li TODO Adding Rubocop, and covering the querying methods with tests
+  %li TODO Moving the querying methods to service or mutation classes (command pattern)
+  %li TODO Improve performance by eliminating jbuilder
+  %li TODO Fix the response information in the API documentation
+
+%hr
+%a.btn.btn-primary{ href: 'https://github.com/MohamedBrary/reviews_viewer', target: :_blank }
+  Github Repository
+
+%a.btn.btn-primary{ href: '/api/docs', target: :_blank }
+  API Documentation
+
+- unless Rails.env.production?
+  %a.btn.btn-success{ href: 'https://reviews-viewer.herokuapp.com', target: :_blank }
+    Heroku Application
+%br
+%br
+%br

@@ -1,0 +1,61 @@
+{
+  "resource": "Reviews",
+  "resource_explanation": "Reviews resource",
+  "http_method": "GET",
+  "route": "/reviews.json",
+  "description": "Getting a list of reviews",
+  "explanation": null,
+  "parameters": [
+    {
+      "with_example": true,
+      "name": "comment",
+      "description": "We can match any part of the review comment, with this parameter"
+    },
+    {
+      "with_example": true,
+      "name": "category_ids",
+      "description": "Any review that has any of the category ids provided, will be matched"
+    },
+    {
+      "with_example": true,
+      "name": "theme_ids",
+      "description": "Any review that has any of the theme ids provided, will be matched"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/reviews.json",
+      "request_body": null,
+      "request_headers": {
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": null,
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "[binary data]",
+      "response_headers": {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "X-Permitted-Cross-Domain-Policies": "none",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"0384b80cbce2a19475f30bf7ee65e175\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "7898e662-b536-400e-af23-0fc73a9ab4fc",
+        "X-Runtime": "0.019753",
+        "Content-Length": "1543"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

@@ -38,7 +38,7 @@ class Review < ApplicationRecord
       category_ids_filter = filter_params['category_ids'].presence
       theme_ids_filter = filter_params['theme_ids'].presence
 
-      scope = Review
+      scope = Review.all
       scope = scope.filter_by_comment(scope, comment_filter) if comment_filter
       scope = scope.filter_by_category_ids(scope, category_ids_filter) if category_ids_filter
       scope = scope.filter_by_theme_ids(scope, theme_ids_filter) if theme_ids_filter

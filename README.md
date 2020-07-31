@@ -2,15 +2,22 @@
 
 ### Table of Contents
 
-* [Initialization](#initialization)
-* [Gems](#gems)
-  + [Haml and Bootstrap](#haml-and-bootstrap)
-  + [Utilities](#utilities)
-    - [Cheerful console and environment variables gems](#cheerful-console-and-environment-variables-gems)
-    - [Sprockets issue with Rails 6](#sprockets-issue-with-rails-6)
-* [Generating Models](#generating-models)
-* [Deploy to Heroku](#deploy-to-heroku)
-* [Commentary](#commentary)
+- [Initialization](#initialization)
+- [Gems](#gems)
+  * [Haml and Bootstrap](#haml-and-bootstrap)
+  * [Utilities](#utilities)
+    + [Cheerful console and environment variables gems](#cheerful-console-and-environment-variables-gems)
+    + [Sprockets issue with Rails 6](#sprockets-issue-with-rails-6)
+    + [Test gems](#test-gems)
+    + [Data generator gems](#data-generator-gems)
+- [Running Application](#running-application)
+    + [Making sure webpacker is working properly](#making-sure-webpacker-is-working-properly)
+    + [Configuring .env and database.yml](#configuring-env-and-databaseyml)
+    + [Initializing git repository and first commit](#initializing-git-repository-and-first-commit)
+- [Generating Models](#generating-models)
+- [Deploy to Heroku](#deploy-to-heroku)
+- [Running Application Locally](#running-application-locally)
+- [Commentary](#commentary)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -103,8 +110,9 @@ group :development, :test do
 
   # Using Rspec testing framework
   gem 'rspec-rails'
-  gem 'rspec_api_documentation'
   gem 'database_cleaner-active_record'
+  gem 'rspec_api_documentation'
+  gem 'apitome' # used for 'rspec_api_documentation' gem to enhance generated documentation
 
   ...
 end
@@ -117,6 +125,7 @@ $ mkdir spec/acceptance # create the spec folder for 'rspec_api_documentation'
 .
 . # create your tests
 .
+$ rails generate apitome:install
 $ rake docs:generate # to generate the API documentation from the acceptance tests
 ```
 
@@ -229,10 +238,24 @@ $ heroku run rails console
 
 **Click [here](https://reviews-viewer.herokuapp.com/) to open the heroku app.**
 
-### Commentary
+### Running Application Locally
 
-- I wanted to use Rails 6, and had some issues with sprockets verions and webpack usage
+- This is a Rails 6 application, that uses Postgres as its database (You need Postgres 9.1 or later so it would support the type of indexes we created, we also require 'pg_trgm' and 'intarray' extensions)
+- Copy 'env.sample' file to '.env', and fill in your local database username and password
+- Follow the RVM instructions in [here](#initialization) to create a gemset for this application before running 'bundle install'
+- Run 'rails db:create db:migrate db:seed' to create and populate your local database
+- Run 'rails s' to run the server, and use the browser to open the application on 'localhost:3000', the homepage should guide you through using the application
+
+### Commentary & TODOs
+
+- I wanted to use Rails 6, and had some issues with sprockets version and webpack usage
 - I am aiming to use Postgres indexes (nice SO thread [here](https://stackoverflow.com/questions/1566717/postgresql-like-query-performance-variations)) to speed up the required querying
   + My understanding that we value retrieval over creating performance, as I would assume that creating reviews and processing them is a background job, while retrieving data and statistics is a client facing feature, and it is vital to be responsive.
-- If I have time, I am also planning to use ElasticSearch, and create a denormalized index suitable for the queries we need, and then provide some benchmarking for both ways
-- Also if there is enough time, I will create some generators and fakers to be able to generate different sizes of data, and have better benchmarks
+- TODO If I have time, I am also planning to use ElasticSearch, and create a denormalized index suitable for the queries we need, and then provide some benchmarking for both ways
+- TODO Also if there is enough time, I will create some generators and fakers to be able to generate different sizes of data, and have better benchmarks
+- TODO Formatting the API result need a better look, following any specification, would be much better, like JsonAPI for example
+- TODO Adding Rubocop, and covering the querying methods with tests
+- TODO Moving the querying methods to service or mutation classes (command pattern)
+- TODO Improve performance by eliminating jbuilder
+- TODO Check why filtering by comment isn't using the tgram index, and doing a sequential scan
+- TODO Fix the response information in the API documentation

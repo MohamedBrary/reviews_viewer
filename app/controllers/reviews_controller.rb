@@ -5,17 +5,17 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.filter(params)
-      .paginate(page: params[:page])
+    @reviews = @reviews.paginate(pagination_params) if pagination_params.present?
   end
 
-  # GET /reviews/categories
-  # GET /reviews/categories.json
+  # GET /reviews/categories_sentiment_average
+  # GET /reviews/categories_sentiment_average.json
   def categories_sentiment_average
     @averages = Review.avg_sentiment_by_category_ids
   end
 
-  # GET /themes
-  # GET /themes.json
+  # GET /themes_sentiment_average
+  # GET /themes_sentiment_average.json
   def themes_sentiment_average
     @averages = Review.avg_sentiment_by_theme_ids
   end
@@ -74,6 +74,20 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # POST /reviews/generate
+  # POST /reviews/generate.json
+  def generate
+    reviews_num = (params[:reviews_num].presence || 1000).to_i
+    Generators::Reviews.generate(
+      categories_num: (params[:categories_num].presence || 3).to_i,
+      reviews_num: reviews_num
+    )
+    respond_to do |format|
+      format.html { redirect_to pages_home_url, notice: "#{reviews_num} Reviews were created!" }
+      format.json { render json: {result: "#{reviews_num} Reviews were created!"} }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -88,5 +102,12 @@ class ReviewsController < ApplicationController
 
     def reviews_index_params
       params.permit(:comment, :theme_ids, :category_ids, :page, :per_page)
+    end
+
+    def pagination_params
+      pagination_params = {}
+      pagination_params[:per_page] = params[:per_page] if params[:per_page].present?
+      pagination_params[:page] = params[:page] if params[:page].present?
+      pagination_params
     end
 end

@@ -13,7 +13,7 @@ FactoryBot.define do
 
     trait :with_themes do
       after(:create) do |category|
-        create_list(:theme, rand(1..3), category: category)
+        create_list(:theme, rand(1..5), category: category)
       end
     end
 

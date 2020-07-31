@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_07_29_183211) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "intarray"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
@@ -41,9 +42,9 @@ ActiveRecord::Schema.define(version: 2020_07_29_183211) do
     t.integer "category_ids", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_ids"], name: "index_reviews_on_category_ids", using: :gin
+    t.index ["category_ids"], name: "index_reviews_on_category_ids", opclass: :gin__int_ops, using: :gin
     t.index ["comment"], name: "index_reviews_on_comment", opclass: :gin_trgm_ops, using: :gin
-    t.index ["theme_ids"], name: "index_reviews_on_theme_ids", using: :gin
+    t.index ["theme_ids"], name: "index_reviews_on_theme_ids", opclass: :gin__int_ops, using: :gin
   end
 
   create_table "themes", force: :cascade do |t|

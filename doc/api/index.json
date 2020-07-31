@@ -1,0 +1,59 @@
+{
+  "resources": [
+    {
+      "name": "Reviews",
+      "explanation": "Reviews resource",
+      "examples": [
+        {
+          "description": "Create a review with valid params",
+          "link": "reviews/create_a_review_with_valid_params.json",
+          "groups": "all",
+          "route": "/reviews.json",
+          "method": "post"
+        },
+        {
+          "description": "Filtering reviews by category_ids",
+          "link": "reviews/filtering_reviews_by_category_ids.json",
+          "groups": "all",
+          "route": "/reviews.json",
+          "method": "get"
+        },
+        {
+          "description": "Filtering reviews by comment",
+          "link": "reviews/filtering_reviews_by_comment.json",
+          "groups": "all",
+          "route": "/reviews.json",
+          "method": "get"
+        },
+        {
+          "description": "Filtering reviews by theme_ids",
+          "link": "reviews/filtering_reviews_by_theme_ids.json",
+          "groups": "all",
+          "route": "/reviews.json",
+          "method": "get"
+        },
+        {
+          "description": "Getting a list of reviews",
+          "link": "reviews/getting_a_list_of_reviews.json",
+          "groups": "all",
+          "route": "/reviews.json",
+          "method": "get"
+        },
+        {
+          "description": "Getting average sentiment per category",
+          "link": "reviews/getting_average_sentiment_per_category.json",
+          "groups": "all",
+          "route": "/reviews/categories_sentiment_average.json",
+          "method": "get"
+        },
+        {
+          "description": "Getting average sentiment per theme",
+          "link": "reviews/getting_average_sentiment_per_theme.json",
+          "groups": "all",
+          "route": "/reviews/themes_sentiment_average.json",
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

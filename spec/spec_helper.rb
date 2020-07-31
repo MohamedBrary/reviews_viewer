@@ -94,3 +94,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+# RspecApiDocumentation.configure do |config|
+#   config.format = :json
+# end

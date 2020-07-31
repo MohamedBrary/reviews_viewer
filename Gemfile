@@ -42,7 +42,6 @@ group :development, :test do
 
   # Using Rspec testing framework
   gem 'rspec-rails'
-  gem 'rspec_api_documentation'
   gem 'database_cleaner-active_record'
 
   # Handling env variables
@@ -74,8 +73,12 @@ gem 'haml-rails'
 gem 'bootstrap-generators' # to generate views using bootstrap
 gem 'will_paginate-bootstrap4' # pagination but with bootstrap touch
 
-# Using FactoryBot, Faker, and Populator as the suite for data generation
+# used for 'rspec_api_documentation' gem to enhance generated documentation
+gem 'rspec_api_documentation'
+gem "apitome", github: "jejacks0n/apitome"
+
+# Using FactoryBot, Faker, and BulkInsert as the suite for data generation
 # Adding them to all environments, as I am planning to expose data generation on heroku
 gem 'factory_bot_rails'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
-gem 'populator'
+gem 'bulk_insert'

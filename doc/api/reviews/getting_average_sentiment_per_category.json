@@ -1,0 +1,47 @@
+{
+  "resource": "Reviews",
+  "resource_explanation": "Reviews resource",
+  "http_method": "GET",
+  "route": "/reviews/categories_sentiment_average.json",
+  "description": "Getting average sentiment per category",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/reviews/categories_sentiment_average.json",
+      "request_body": null,
+      "request_headers": {
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": null,
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "[binary data]",
+      "response_headers": {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "X-Permitted-Cross-Domain-Policies": "none",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"def7f5d64f842ea18538a0b05c716d71\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "4995d474-d500-45ea-bb0e-17993312f027",
+        "X-Runtime": "0.005705",
+        "Content-Length": "206"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

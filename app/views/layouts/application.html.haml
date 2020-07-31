@@ -25,7 +25,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to 'Reviews Viewer', "#", class: "navbar-brand"
+          = link_to 'Reviews Viewer', root_path, class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li{ class: ('active' if controller_name == 'categories') }
@@ -34,6 +34,8 @@
               %a{href: themes_path} Themes
             %li{ class: ('active' if controller_name == 'reviews') }
               %a{href: reviews_path} Reviews
+            %li{ class: ('active' if controller_name == 'pages' && action_name == 'read_me') }
+              %a{href: pages_read_me_path} ReadMe
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

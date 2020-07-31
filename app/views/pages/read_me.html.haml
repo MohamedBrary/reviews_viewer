@@ -1,0 +1,301 @@
+%h2#creating-reviewsviewer-rails-project Creating ReviewsViewer Rails Project
+%h3#table-of-contents Table of Contents
+%ul
+  %li
+    %a{:href => "#initialization"} Initialization
+  %li
+    %a{:href => "#gems"} Gems
+  %li
+    %a{:href => "#haml-and-bootstrap"} Haml and Bootstrap
+  %li
+    %a{:href => "#utilities"} Utilities
+    %ul
+      %li
+        %a{:href => "#cheerful-console-and-environment-variables-gems"} Cheerful console and environment variables gems
+      %li
+        %a{:href => "#sprockets-issue-with-rails-6"} Sprockets issue with Rails 6
+      %li
+        %a{:href => "#test-gems"} Test gems
+      %li
+        %a{:href => "#data-generator-gems"} Data generator gems
+  %li
+    %a{:href => "#running-application"} Running Application
+    %ul
+      %li
+        %a{:href => "#making-sure-webpacker-is-working-properly"} Making sure webpacker is working properly
+      %li
+        %a{:href => "#configuring-env-and-databaseyml"} Configuring .env and database.yml
+      %li
+        %a{:href => "#initializing-git-repository-and-first-commit"} Initializing git repository and first commit
+  %li
+    %a{:href => "#generating-models"} Generating Models
+  %li
+    %a{:href => "#deploy-to-heroku"} Deploy to Heroku
+  %li
+    %a{:href => "#running-application-locally"} Running Application Locally
+  %li
+    %a{:href => "#commentary"} Commentary
+%p
+  %small
+    %i
+      %a{:href => "http://ecotrust-canada.github.io/markdown-toc/"} Table of contents generated with markdown-toc
+%h3#initialization Initialization
+%p
+  Based on this
+  %a{:href => "https://gist.github.com/MohamedBrary/12465abb009d5dbeadeb8cde9adb30b5"} gist
+  \.
+%pre.sh
+  %code
+    :preserve
+      # List available rubies, to choose which ruby to use
+      $ rvm list rubies
+
+      # To install new ruby use, for example version '2.7.1'
+      $ rvm install 2.7.1
+
+      # create and use the new RVM gemset for project "reviews_viewer"
+      $ rvm use --create 2.7.1@reviews_viewer
+
+      # install latest rails into the blank gemset
+      $ gem install rails -v 6.0.3
+
+      # as a good practice is recommended to install webpack and webpack-dev-server locally, more info [here](https://webpack.js.org/guides/installation/).
+      $ yarn add webpack webpack-dev-server webpack-cli --dev
+
+      # Creates new rails app "reviews_viewer"
+      # -d mysql: defining database (other options: mysql, oracle, postgresql, sqlite3, frontbase)
+      # -T to skip generating test folder and files (in case of planning to use rspec)
+      # --api to create an API only application
+      $ rails new reviews_viewer -d postgresql -T
+
+      # go into the new project directory and create a .ruby-version and .ruby-gemset for the project
+      $ cd reviews_viewer
+      $ rvm --ruby-version use 2.7.1@reviews_viewer
+%h3#gems Gems
+%h4#haml-and-bootstrap Haml and Bootstrap
+%p Using Haml and Bootstrap to have simple nice looking views
+%pre.sourceCode.ruby
+  %code.sourceCode.ruby
+    gem
+    %span.st 'haml-rails'
+    gem
+    %span.st 'bootstrap-generators'
+    %span.co # to generate views using bootstrap
+    gem
+    %span.st 'will_paginate-bootstrap4'
+    %span.co # pagination but with bootstrap touch
+%pre.sh
+  %code
+    :preserve
+      $ rake haml:erb2haml
+      $ rails generate bootstrap:install --template-engine=haml%h4#utilities Utilities
+%h5#cheerful-console-and-environment-variables-gems Cheerful console and environment variables gems
+%pre.sourceCode.ruby
+  %code.sourceCode.ruby
+    group
+    = succeed "," do
+      %span.st :development
+    %span.st :test
+    %span.kw do
+    %span.co # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+    %span.co # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+    %span.co # More colorful console gems
+    gem
+    %span.st 'pry'
+    gem
+    %span.st 'pry-rails'
+    gem
+    %span.st 'pry-rescue'
+    gem
+    %span.st 'pry-byebug'
+    %span.co # Handling env variables
+    gem
+    %span.st 'dotenv-rails'
+    %span.kw end
+%h5#sprockets-issue-with-rails-6 Sprockets issue with Rails 6
+%p I had to use this specific version, to solve an issue with assets compiling.
+%pre.sourceCode.ruby
+  %code.sourceCode.ruby
+    gem
+    = succeed "," do
+      %span.st 'sprockets'
+    %span.st '~&gt; 3.7.2'
+%pre.sh
+  %code $ bundle update sprockets
+%h5#test-gems Test gems
+%p
+  I am using Rspec framework, and 'rspec_api_documentation'
+  = succeed "," do
+    %a{:href => "https://github.com/zipmark/rspec_api_documentation"} gem
+%pre.sourceCode.ruby
+  %code.sourceCode.ruby
+    group
+    = succeed "," do
+      %span.st :development
+    %span.st :test
+    %span.kw do
+    \...
+    %span.co # Using Rspec testing framework
+    gem
+    %span.st 'rspec-rails'
+    gem
+    %span.st 'database_cleaner-active_record'
+    gem
+    %span.st 'rspec_api_documentation'
+    gem
+    %span.st 'apitome'
+    %span.co # used for 'rspec_api_documentation' gem to enhance generated documentation
+    \...
+    %span.kw end
+%pre.sh
+  %code
+    :preserve
+      $ rails generate rspec:install
+      $ rspec # should run without errors
+      $ mkdir spec/acceptance # create the spec folder for 'rspec_api_documentation'
+      .
+      . # create your tests
+      .
+      $ rails generate apitome:install
+      $ rake docs:generate # to generate the API documentation from the acceptance tests%h5#data-generator-gems Data generator gems
+%p For a lot of reasons, having the ability to generate records with random and semi-realistic feel is precious; - whether for usage in test suite, - creating some records from console easily, - used in populators, that would allow you to populate your development or staging environment with data, and also allow you to benchmark your application performance against different sizes of data
+%p
+  I use combination of
+  %a{:href => "https://github.com/thoughtbot/factory_bot_rails"} FactoryBot
+  and
+  %a{:href => "https://github.com/faker-ruby/faker"} Faker
+  to have fixture factories with random info, also
+  %a{:href => "https://github.com/ryanb/populator"} Populator
+  to create masses of records with higher performance.
+%pre.sourceCode.ruby
+  %code.sourceCode.ruby
+    %span.co # Gemfile
+    %span.co # Using FactoryBot, Faker, and Populator as the suite for data generation
+    %span.co # Adding them to all environments, as I am planning to expose data generation on heroku
+    gem
+    %span.st 'factory_bot_rails'
+    gem
+    = succeed "," do
+      %span.st 'faker'
+    = succeed "," do
+      %span.st 'https://github.com/faker-ruby/faker.git'
+    %span.st 'master'
+    gem
+    %span.st 'populator'
+%h3#running-application Running Application
+%h5#making-sure-webpacker-is-working-properly Making sure webpacker is working properly
+%pre.sh
+  %code
+    :preserve
+      $ bundle
+      $ bundle exec rails webpacker:install%h5{:id => "configuring-.env-and-database.yml"} Configuring .env and database.yml
+%p
+  Create
+  %code .env
+  file and add these two environment variables
+%pre.sourceCode.ruby
+  %code.sourceCode.ruby
+    %span.co # DBs Credentials
+    = succeed "=" do
+      %span.dt LOCAL_DB_USERNAME
+    %span.st 'your_db_username'
+    = succeed "=" do
+      %span.dt LOCAL_DB_PASSWORD
+    %span.st 'your_db_password'
+%p
+  So we can use them in
+  %code config/database.yml
+  to configure development and test databases.
+%pre.yml
+  %code
+    :preserve
+      ...
+      development:
+        <<: *default
+        database: reviews_viewer_development
+        username: <%= ENV['LOCAL_DB_USERNAME'] %>
+        password: <%= ENV['LOCAL_DB_PASSWORD'] %>
+      ...
+      test:
+        <<: *default
+        database: reviews_viewer_test
+        username: <%= ENV['LOCAL_DB_USERNAME'] %>
+        password: <%= ENV['LOCAL_DB_PASSWORD'] %>
+      ...
+%p Now we can create the database, and run Rails server to make sure that our application has been initialized successfully.
+%pre.sh
+  %code
+    :preserve
+      $ rails db:create
+      $ rails s
+      # now visit localhost:3000 in your browser to see the application running%h5#initializing-git-repository-and-first-commit Initializing git repository and first commit
+%pre.sh
+  %code
+    :preserve
+      # initialize git
+      $ git init
+      $ git add .
+      $ git commit -m 'CHORE: initial commit with new rails app and initial gems'
+      $ git remote add origin git@github.com:MohamedBrary/reviews_viewer.git
+      $ git push -u origin master%h3#generating-models Generating Models
+%pre.sh
+  %code
+    :preserve
+      # generate scaffold for models to speed up the creation of the app
+      # for the sake of this sample task, we will deal with the external id, as the internal id (won't save the external id)
+      # we will also create some duplicate foriegn key fields, and composite foriegn keys fields, to play with them later to tune the performance of database
+      rails g scaffold Category name
+      rails g scaffold Theme name category:references
+      rails g scaffold Review comment:index posted_at theme_ids:integer:index category_ids:integer:index
+      rails g scaffold ReviewTheme review:references theme:references category:references sentiment:integer%h3#deploy-to-heroku Deploy to Heroku
+%p
+  You need first to have an account on
+  = succeed "," do
+    %a{:href => "https://signup.heroku.com/?c=70130000001x9jFAAQ"} Heroku
+  %a{:href => "https://devcenter.heroku.com/articles/heroku-cli#download-and-install"} command line interface
+  installed.
+%pre.sh
+  %code
+    :preserve
+      # Creating new Heroku app named reviews_viewer
+      $ heroku create reviews-viewer
+
+      # Deploy application
+      $ git push heroku master
+
+      # To open heroku app
+      $ heroku open
+
+      # Useful heroku commands
+      $ heroku logs --tail
+      $ heroku run rails console
+%p
+  %strong
+    Click
+    %a{:href => "https://reviews-viewer.herokuapp.com/"} here
+    to open the heroku app.
+%h3#running-application-locally Running Application Locally
+%ul
+  %li This is a Rails 6 application, that uses Postgres as its database (You need Postgres 9.1 or later so it would support the type of indexes we created, we also require 'pg_trgm' and 'intarray' extensions)
+  %li Copy 'env.sample' file to '.env', and fill in your local database username and password
+  %li
+    Follow the RVM instructions in
+    %a{:href => "#initialization"} here
+    to create a gemset for this application before running 'bundle install'
+  %li Run 'rails db:create db:migrate db:seed' to create and populate your local database
+  %li Run 'rails s' to run the server, and use the browser to open the application on 'localhost:3000', the homepage should guide you through using the application
+%h3#commentary Commentary & TODOs
+%ul
+  %li I wanted to use Rails 6, and had some issues with sprockets version and webpack usage
+  %li
+    I am aiming to use Postgres indexes (nice SO thread
+    = succeed ")" do
+      %a{:href => "https://stackoverflow.com/questions/1566717/postgresql-like-query-performance-variations"} here
+  %li My understanding that we value retrieval over creating performance, as I would assume that creating reviews and processing them is a background job, while retrieving data and statistics is a client facing feature, and it is vital to be responsive.
+  %li TODO If I have time, I am also planning to use ElasticSearch, and create a denormalized index suitable for the queries we need, and then provide some benchmarking for both ways
+  %li TODO Also if there is enough time, I will create some generators and fakers to be able to generate different sizes of data, and have better benchmarks
+  %li TODO Formatting the API result need a better look, following any specification, would be much better, like JsonAPI for example
+  %li TODO Adding Rubocop, and covering the querying methods with tests
+  %li TODO Moving the querying methods to service or mutation classes (command pattern)
+  %li TODO Improve performance by eliminating jbuilder
+  %li TODO Fix the response information in the API documentation
