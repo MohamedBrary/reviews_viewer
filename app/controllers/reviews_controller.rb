@@ -4,8 +4,13 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.filter(params)
-    @reviews = @reviews.paginate(pagination_params) if pagination_params.present?
+    @reviews = SearchReviewsService.new(
+      source: params['source'].presence,
+      comment_filter: params['comment'].presence,
+      category_ids_filter: params['category_ids'].presence,
+      theme_ids_filter: params['theme_ids'].presence,
+      pagination_params: pagination_params
+    ).call
   end
 
   # GET /reviews/categories_sentiment_average
@@ -37,7 +42,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @review = CreateReviewService.new(review_params).call
 
     respond_to do |format|
       if @review.save
@@ -78,7 +83,7 @@ class ReviewsController < ApplicationController
   # POST /reviews/generate.json
   def generate
     reviews_num = (params[:reviews_num].presence || 1000).to_i
-    Generators::Reviews.generate(
+    Data::Generator.generate_reviews(
       categories_num: (params[:categories_num].presence || 3).to_i,
       reviews_num: reviews_num
     )
@@ -101,7 +106,7 @@ class ReviewsController < ApplicationController
     end
 
     def reviews_index_params
-      params.permit(:comment, :theme_ids, :category_ids, :page, :per_page)
+      params.permit(:source, :comment, :theme_ids, :category_ids, :page, :per_page)
     end
 
     def pagination_params

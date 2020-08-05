@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/elastic/elasticsearch-rails.git
+  revision: 4c44370c9f4f5f6d764b9dca662be8c0522d1f1a
+  specs:
+    elasticsearch-model (7.1.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (7.1.0)
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: 66e6113c29438e70bcc6a031971efe60ae06b71f
   branch: master
@@ -104,6 +114,14 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    elasticsearch (7.8.1)
+      elasticsearch-api (= 7.8.1)
+      elasticsearch-transport (= 7.8.1)
+    elasticsearch-api (7.8.1)
+      multi_json
+    elasticsearch-transport (7.8.1)
+      faraday (~> 1)
+      multi_json
     erubi (1.9.0)
     erubis (2.7.0)
     factory_bot (6.1.0)
@@ -111,6 +129,8 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+    faraday (1.0.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -123,6 +143,7 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 5.1)
+    hashie (4.1.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -151,6 +172,8 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     msgpack (1.3.3)
+    multi_json (1.15.0)
+    multipart-post (2.1.1)
     mustache (1.1.1)
     nio4r (2.5.2)
     nokogiri (1.10.10)
@@ -303,6 +326,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   database_cleaner-active_record
   dotenv-rails
+  elasticsearch-model!
+  elasticsearch-rails!
   factory_bot_rails
   faker!
   haml-rails

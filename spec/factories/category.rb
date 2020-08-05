@@ -9,7 +9,7 @@ require_relative 'factories_helper.rb'
 
 FactoryBot.define do
   factory :category do
-    name { Faker::Commerce.unique.department(max: 1) }
+    name { Faker::Commerce.department(max: 1) }
 
     trait :with_themes do
       after(:create) do |category|

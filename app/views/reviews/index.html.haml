@@ -2,7 +2,7 @@
   = link_to new_review_path, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
     New Review
-  %h1 Listing reviews
+  %h1= "Listing #{@reviews.count} Reviews"
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
@@ -25,9 +25,9 @@
           %td= review.posted_at
           %td= theme_links(review.theme_ids).html_safe
           %td= category_links(review.category_ids).html_safe
-          %td= link_to 'Show', review
-          %td= link_to 'Edit', edit_review_path(review)
-          %td= link_to 'Destroy', review, data: { confirm: 'Are you sure?' }, method: :delete
+          %td= link_to 'Show', review_path(review.id)
+          %td= link_to 'Edit', edit_review_path(review.id)
+          %td= link_to 'Destroy', review_path(review.id), data: { confirm: 'Are you sure?' }, method: :delete
 
-- if @reviews.respond_to?(:total_pages)
-  = will_paginate @reviews, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+/ - if @reviews.respond_to?(:total_pages)
+/   = will_paginate @reviews, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

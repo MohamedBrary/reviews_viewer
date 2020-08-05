@@ -82,3 +82,7 @@ gem "apitome", github: "jejacks0n/apitome"
 gem 'factory_bot_rails'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'bulk_insert'
+
+# Using ElasticSearch 7.x(7.8.1), which is on latest branch currently
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails'

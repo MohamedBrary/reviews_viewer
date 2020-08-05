@@ -15,6 +15,9 @@ require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+# To display information about the search request (duration, search definition) during development
+require 'elasticsearch/rails/instrumentation'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

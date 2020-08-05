@@ -1,0 +1,151 @@
+Benchmarking started 2020-08-06 16:01:14 +0300 for these data sizes [{:categoies_count=>1, :reviews_count=>10}, {:categoies_count=>3, :reviews_count=>10000}, {:categoies_count=>5, :reviews_count=>100000}, {:categoies_count=>8, :reviews_count=>1000000}, {:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>1, :reviews_count=>10}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224], :theme_ids_filter=>[6373, 6374]} for {:categoies_count=>1, :reviews_count=>10}, database first, then the index
+[#<Benchmark::Tms:0x00000000071022a8 @label="", @real=0.0005115849780850112, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x00000000071005c0 @label="", @real=0.00020850897999480367, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>3, :reviews_count=>10000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374]} for {:categoies_count=>3, :reviews_count=>10000}, database first, then the index
+[#<Benchmark::Tms:0x0000000007378550 @label="", @real=0.0004400110337883234, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000007373078 @label="", @real=8.08649929240346e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>5, :reviews_count=>100000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374, 6373, 6374]} for {:categoies_count=>5, :reviews_count=>100000}, database first, then the index
+[#<Benchmark::Tms:0x000000000de78170 @label="", @real=0.00028781400760635734, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x000000000de751c8 @label="", @real=6.360496627166867e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>8, :reviews_count=>1000000}
+Benchmarking started 2020-08-06 21:18:03 +0300 for these data sizes [{:categoies_count=>1, :reviews_count=>10}, {:categoies_count=>3, :reviews_count=>10000}, {:categoies_count=>5, :reviews_count=>100000}, {:categoies_count=>8, :reviews_count=>1000000}, {:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>1, :reviews_count=>10}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224], :theme_ids_filter=>[6373, 6374]} for {:categoies_count=>1, :reviews_count=>10}, database first, then the index
+[#<Benchmark::Tms:0x00000000063e2e10 @label="", @real=0.0012598520261235535, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x00000000063e1128 @label="", @real=0.0005176570266485214, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>3, :reviews_count=>10000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374]} for {:categoies_count=>3, :reviews_count=>10000}, database first, then the index
+[#<Benchmark::Tms:0x0000000006a077f0 @label="", @real=0.0004494119784794748, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000006a05ae0 @label="", @real=5.521503044292331e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>5, :reviews_count=>100000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374, 6373, 6374]} for {:categoies_count=>5, :reviews_count=>100000}, database first, then the index
+[#<Benchmark::Tms:0x0000000018b14758 @label="", @real=0.0006089829839766026, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000018b138d0 @label="", @real=6.0727004893124104e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>8, :reviews_count=>1000000}
+==================
+Benchmarking started 2020-08-06 22:40:41 +0300 for these data sizes [{:categoies_count=>1, :reviews_count=>10}, {:categoies_count=>3, :reviews_count=>10000}, {:categoies_count=>5, :reviews_count=>100000}, {:categoies_count=>8, :reviews_count=>1000000}, {:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>1, :reviews_count=>10}
+Benchmarking started 2020-08-06 22:54:10 +0300 for these data sizes [{:categoies_count=>1, :reviews_count=>10}, {:categoies_count=>3, :reviews_count=>10000}, {:categoies_count=>5, :reviews_count=>100000}, {:categoies_count=>8, :reviews_count=>1000000}, {:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>1, :reviews_count=>10}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224], :theme_ids_filter=>[6373, 6374]} for {:categoies_count=>1, :reviews_count=>10}, database first, then the index
+[#<Benchmark::Tms:0x0000000006a95168 @label="", @real=0.0006847050390206277, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0040000000000000036, @total=0.0040000000000000036>, #<Benchmark::Tms:0x0000000006aa7430 @label="", @real=0.00041338405571877956, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>3, :reviews_count=>10000}
+Benchmarking started 2020-08-06 22:55:23 +0300 for these data sizes [{:categoies_count=>1, :reviews_count=>10}, {:categoies_count=>3, :reviews_count=>10000}, {:categoies_count=>5, :reviews_count=>100000}, {:categoies_count=>8, :reviews_count=>1000000}, {:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>1, :reviews_count=>10}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224], :theme_ids_filter=>[6373, 6374]} for {:categoies_count=>1, :reviews_count=>10}, database first, then the index
+[#<Benchmark::Tms:0x0000000005bd02e0 @label="", @real=0.000544227019418031, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005be29b8 @label="", @real=0.00023768399842083454, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>3, :reviews_count=>10000}
+Benchmarking started 2020-08-06 23:06:24 +0300 for these data sizes [{:categoies_count=>1, :reviews_count=>10}, {:categoies_count=>3, :reviews_count=>10000}, {:categoies_count=>5, :reviews_count=>100000}, {:categoies_count=>8, :reviews_count=>1000000}, {:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>1, :reviews_count=>10}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224], :theme_ids_filter=>[6373, 6374]} for {:categoies_count=>1, :reviews_count=>10}, database first, then the index
+[#<Benchmark::Tms:0x000000000714df50 @label="", @real=0.0006620429921895266, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x00000000077ba5c8 @label="", @real=0.0003558630123734474, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>3, :reviews_count=>10000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374]} for {:categoies_count=>3, :reviews_count=>10000}, database first, then the index
+[#<Benchmark::Tms:0x0000000009531d18 @label="", @real=0.00018131401157006621, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000009530c60 @label="", @real=6.594299338757992e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>5, :reviews_count=>100000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374, 6373, 6374]} for {:categoies_count=>5, :reviews_count=>100000}, database first, then the index
+[#<Benchmark::Tms:0x000000000ceb2600 @label="", @real=0.00023397000040858984, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x000000000ceb11b0 @label="", @real=5.201197927817702e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>8, :reviews_count=>1000000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1224, 1224, 1224, 1224], :theme_ids_filter=>[6373, 6374, 6373, 6374, 6373, 6374, 6373, 6374]} for {:categoies_count=>8, :reviews_count=>1000000}, database first, then the index
+[#<Benchmark::Tms:0x000000002b83cba8 @label="", @real=0.0005669989623129368, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x000000002b859c30 @label="", @real=0.0007542610401287675, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+[#<Benchmark::Tms:0x00007fec30c8aae0 @label="", @real=0.0006004319293424487, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x00007fec30cca7f8 @label="", @real=0.0010941959917545319, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0040000000000000036, @total=0.0040000000000000036>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+[#<Benchmark::Tms:0x00007fec30da4598 @label="", @real=0.000170242041349411, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x00007fec30d97050 @label="", @real=4.6547967940568924e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1222, 1223, 1224], :theme_ids_filter=>[6355, 6338, 6339]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+[#<Benchmark::Tms:0x00007fec30dfdad0 @label="", @real=0.0001926629338413477, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x00007fec30dfcb58 @label="", @real=4.867010284215212e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[1221, 1219, 57], :theme_ids_filter=>[6337, 6372, 167]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+[#<Benchmark::Tms:0x0000000005ddb4b8 @label="", @real=0.0005807980196550488, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005db7248 @label="", @real=0.00039484293665736914, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[31, 77, 68], :theme_ids_filter=>[94, 217, 199]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+[#<Benchmark::Tms:0x00007fec30134fb0 @label="", @real=0.00023889902513474226, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005ab6418 @label="", @real=6.032991223037243e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[45, 25, 1219], :theme_ids_filter=>[143, 75, 6372]} for {:categories_num=>106, :reviews_num=>2342292}, database first, then the index
+[#<Benchmark::Tms:0x000000000307de58 @label="", @real=0.000982689089141786, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000003072d28 @label="", @real=0.000760390073992312, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking started 2020-08-07 14:21:06 +0300 for these data sizes [{:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking started 2020-08-07 15:11:59 +0300 for these data sizes [{:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking started 2020-08-07 15:14:30 +0300 for these data sizes [{:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking started 2020-08-07 15:25:40 +0300 for these data sizes [{:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking started 2020-08-07 15:27:32 +0300 for these data sizes [{:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking started 2020-08-07 20:15:16 +0300 for these data sizes [{:categoies_count=>10, :reviews_count=>10000000}]
+Generating data for {:categoies_count=>10, :reviews_count=>10000000}
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[95, 64, 153], :theme_ids_filter=>[276, 187, 445]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+[#<Benchmark::Tms:0x000000000561e978 @label="", @real=0.0008657249854877591, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005623dd8 @label="", @real=0.0008613630197942257, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[90, 139, 1], :theme_ids_filter=>[259, 399, 1]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+[#<Benchmark::Tms:0x0000000005b35cb8 @label="", @real=0.0030432359781116247, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005b2f048 @label="", @real=0.003998320084065199, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.004000000000814907, @total=0.004000000000814907>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[150, 1220, 10], :theme_ids_filter=>[438, 6336, 36]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+[#<Benchmark::Tms:0x0000000005ab1648 @label="", @real=0.00021082896273583174, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005aafed8 @label="", @real=9.031698573380709e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[26, 49, 58], :theme_ids_filter=>[77, 152, 168]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+[#<Benchmark::Tms:0x0000000005765b38 @label="", @real=0.0002214940031990409, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>, #<Benchmark::Tms:0x0000000005764800 @label="", @real=8.412403985857964e-05, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>]
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[77, 4, 7], :theme_ids_filter=>[217, 11, 22]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+===========\n\rDatabase: 0.0008325729286298156
+Index   : 0.0007380649913102388
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[136, 92, 114], :theme_ids_filter=>[394, 264, 334]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+===========\n\rDatabase: 0.00338265101891011
+Index   : 0.0005447299918159842
+==================
+Benchmarking this query {:comment_filter=>"now", :category_ids_filter=>[49, 64, 80], :theme_ids_filter=>[152, 187, 227]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+===========
+Database: 0.000833517056889832
+Index   : 0.0005264210049062967
+==================
+Benchmarking this query {:comment_filter=>"difference", :category_ids_filter=>[150, 110, 125], :theme_ids_filter=>[438, 322, 358]} for {:categories_num=>169, :reviews_num=>8032692}, database first, then the index
+===========
+Database: 0.0007890270790085196
+Index   : 0.0005759880878031254
+==================
+===========
+Benchmarking 2 sample queries for {:categories_num=>169, :reviews_num=>8032692}, yielded these results:
+Total time spent in databases 0.001236864016391337
+                 Vs. in index 0.0008021349785849452
+So time in database was 1.54x in index!
+
+===========
+Benchmarking 2 sample queries for {:categories_num=>169, :reviews_num=>8032692}, yielded these results:
+Total time spent in database 0.0012511280365288258
+                Vs. in index 0.0007480960339307785
+So time in database was 1.67x in index!
+
+
+
+===========
+Benchmarking 100 sample queries for {:categories_num=>169, :reviews_num=>8032692}, yielded these results:
+Total time spent in database 0.031034868443384767
+                Vs. in index 0.008404920226894319
+So time in database was 3.69x in index!
+==================
+

@@ -17,7 +17,8 @@
 - [Generating Models](#generating-models)
 - [Deploy to Heroku](#deploy-to-heroku)
 - [Running Application Locally](#running-application-locally)
-- [Commentary](#commentary)
+- [Commentary & TODOs](#commentary---todos)
+- [Postgres vs. ElasticSearch Querying Benchmark](#postgres-vs-elasticsearch-querying-benchmark)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -249,13 +250,26 @@ $ heroku run rails console
 ### Commentary & TODOs
 
 - I wanted to use Rails 6, and had some issues with sprockets version and webpack usage
-- I am aiming to use Postgres indexes (nice SO thread [here](https://stackoverflow.com/questions/1566717/postgresql-like-query-performance-variations)) to speed up the required querying
+- I wanted to test the performance of both Postgres database vs Elasticsearch, and see how both would scale against different data sizes
+- I used Postgres indexes (nice SO thread [here](https://stackoverflow.com/questions/1566717/postgresql-like-query-performance-variations)) to speed up the required querying
   + My understanding that we value retrieval over creating performance, as I would assume that creating reviews and processing them is a background job, while retrieving data and statistics is a client facing feature, and it is vital to be responsive.
-- TODO If I have time, I am also planning to use ElasticSearch, and create a denormalized index suitable for the queries we need, and then provide some benchmarking for both ways
-- TODO Also if there is enough time, I will create some generators and fakers to be able to generate different sizes of data, and have better benchmarks
+- I used ElasticSearch, and created a denormalized index suitable for the queries we need
+- I created some data generators and fakers to be able to generate different sizes of data, and have better benchmarks for querying against postgres vs elasticsearch
+- TODO Adding Rubocop, and have better test coverage for the service classes
 - TODO Formatting the API result need a better look, following any specification, would be much better, like JsonAPI for example
-- TODO Adding Rubocop, and covering the querying methods with tests
-- TODO Moving the querying methods to service or mutation classes (command pattern)
-- TODO Improve performance by eliminating jbuilder
-- TODO Check why filtering by comment isn't using the tgram index, and doing a sequential scan
-- TODO Fix the response information in the API documentation
+- TODO Add support to [test elasticsearch](https://bonsai.io/blog/testing-elasticsearch-ruby-gems.html), and add section to the readme for installing and running it locally and on Heroku
+
+### Postgres vs. ElasticSearch Querying Benchmark
+
+> rake data:benchmark
+> Benchmarking 100 sample queries for {:categories_num=>169, :reviews_num=>8032692}, yielded these results:
+> Total time spent in database 0.031034868443384767
+>                 Vs. in index 0.008404920226894319
+> So time in database was 3.69x in index!
+
+- I implemented data generators that would generate a near-real full records, with all relations and fields are set properly
+- More than 8M reviews were generated locally, with categories and themes
+- The above benchmark is based on 100 queries that filter on review comment, category ids, and theme ids
+- Each query was random, so it doesn't run the same query 100 times (I noticed Elasticsearch would out-perform PG drastically in case of repeated queries, maybe better caching, but can be tuned in PG if it is an actual real usage case )
+- Definitely this isn't 100% accurate, and not a verdict, but would agree with the general notion of having Postgres as the data store, while using search engine for indexing and querying data, is one of the easy steps for scaling
+- I do believe that most modern systems can be utilized in a way to scale with great performance, but it is a matter of which state the product in, and what are the available resources

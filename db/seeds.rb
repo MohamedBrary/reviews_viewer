@@ -20,4 +20,5 @@ end
 
 puts 'Post-processing Reviews'
 Review.set_new_category_and_theme_ids
+Review.reindex
 puts "Done post-processing #{Review.count} Reviews"
