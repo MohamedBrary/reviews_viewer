@@ -254,6 +254,7 @@ $ heroku run rails console
   + My understanding that we value retrieval over creating performance, as I would assume that creating reviews and processing them is a background job, while retrieving data and statistics is a client facing feature, and it is vital to be responsive.
 - I used ElasticSearch, and created a denormalized index suitable for the queries we need
 - I created some data generators and fakers to be able to generate different sizes of data, and have better benchmarks for querying against postgres vs elasticsearch
+- Regarding the average sentiment queries, Postgres does squential scan as the first step so it doesn't scale well, moving this to ElasticSearch would be an option, another option would be adding index on 'review_themes.sentiment' (maybe as a string/keyword, not integer to be faster?) and calculating it on server per category/theme, given that category/theme have limited number, and this query would utilize the index, so it should be faster
 - TODO Adding Rubocop, and have better test coverage for the service classes
 - TODO Formatting the API result need a better look, following any specification, would be much better, like JsonAPI for example
 - TODO Add support to [test elasticsearch](https://bonsai.io/blog/testing-elasticsearch-ruby-gems.html), and add section to the readme for installing and running it locally and on Heroku

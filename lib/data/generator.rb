@@ -78,7 +78,8 @@ class Data::Generator
       )
 
       # index new reviews
-      Review.import_to_index(new_reviews)
+      # TODO disabled on production till ES is properly setup
+      Review.import_to_index(new_reviews) unless Rails.env.production?
     end
     reviews_count = Review.count - reviews_count
     puts "=== Created #{reviews_count} reviews"
