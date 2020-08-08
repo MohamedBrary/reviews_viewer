@@ -4,7 +4,7 @@ class Review < ApplicationRecord
   # ---------
   # Relations
 
-  has_many :review_themes
+  has_many :review_themes, dependent: :delete_all
   accepts_nested_attributes_for :review_themes
 
   # -----------

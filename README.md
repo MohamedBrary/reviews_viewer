@@ -137,15 +137,14 @@ For a lot of reasons, having the ability to generate records with random and sem
 - creating some records from console easily,
 - used in populators, that would allow you to populate your development or staging environment with data, and also allow you to benchmark your application performance against different sizes of data
 
-I use combination of [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) and [Faker](https://github.com/faker-ruby/faker) to have fixture factories with random info, also [Populator](https://github.com/ryanb/populator) to create masses of records with higher performance.
+I use combination of [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) and [Faker](https://github.com/faker-ruby/faker) to have fixture factories with random info, also [BulkInsert](https://github.com/jamis/bulk_insert) to create masses of records with higher performance.
 
 ```ruby
-# Gemfile
-# Using FactoryBot, Faker, and Populator as the suite for data generation
+# Using FactoryBot, Faker, and BulkInsert as the suite for data generation
 # Adding them to all environments, as I am planning to expose data generation on heroku
 gem 'factory_bot_rails'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
-gem 'populator'
+gem 'bulk_insert'
 ```
 
 ### Running Application
@@ -261,15 +260,17 @@ $ heroku run rails console
 
 ### Postgres vs. ElasticSearch Querying Benchmark
 
-> rake data:benchmark
-> Benchmarking 100 sample queries for {:categories_num=>169, :reviews_num=>8032692}, yielded these results:
-> Total time spent in database 0.031034868443384767
->                 Vs. in index 0.008404920226894319
-> So time in database was 3.69x in index!
+```sh
+rake data:benchmark
+Benchmarking 100 sample queries for {:categories_num=>169, :reviews_num=>8032692}, yielded these results:
+Total time spent in database 0.031034868443384767
+                Vs. in index 0.008404920226894319
+So time in database was 3.69x in index!
+```
 
 - I implemented data generators that would generate a near-real full records, with all relations and fields are set properly
 - More than 8M reviews were generated locally, with categories and themes
 - The above benchmark is based on 100 queries that filter on review comment, category ids, and theme ids
 - Each query was random, so it doesn't run the same query 100 times (I noticed Elasticsearch would out-perform PG drastically in case of repeated queries, maybe better caching, but can be tuned in PG if it is an actual real usage case )
 - Definitely this isn't 100% accurate, and not a verdict, but would agree with the general notion of having Postgres as the data store, while using search engine for indexing and querying data, is one of the easy steps for scaling
-- I do believe that most modern systems can be utilized in a way to scale with great performance, but it is a matter of which state the product in, and what are the available resources
+- I do believe that most modern systems can be utilized in a way to scale with great performance, but it is a matter of which state the product in, and what are the available resources we can spare
